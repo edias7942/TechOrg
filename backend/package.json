@@ -12,7 +12,7 @@
   "main": "backend.js",
   "scripts": {
     "start": "nodemon backend.js",
-    "test": "nodemon test-backend.js"
+    "test": "nodemon test.js"
   },
   "keywords": [],
   "author": "",

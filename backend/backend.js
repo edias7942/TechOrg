@@ -14,11 +14,11 @@ const PORT = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Função que realiza uma verificação no user_token do usuário.
 app.post("/verifyToken", async (req, res) => {
   const { user_token } = req.headers;
-  console.log(user_token);
   let token_verification = await token.verifyToken(user_token);
-  res.status(202).json(token_verification);
+  res.status(200).json(token_verification);
 });
 
 app.post("/login", async (req, res) => {
