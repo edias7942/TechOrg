@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
@@ -17,17 +16,17 @@ app.use(bodyParser.json());
 // Função que realiza uma verificação no user_token do usuário.
 app.post("/verifyToken", async (req, res) => {
   const { user_token } = req.headers;
-  let token_verification = await token.verifyToken(user_token);
+  let token_verification = await token.verify(user_token);
   res.status(200).json(token_verification);
 });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  let user_verification = await user.verifyUser(email, password);
+  let user_verification = await user.verify(email, password);
 
   if (user_verification.status === 200) {
-    let create_token = await token.createToken(user_verification.response.id);
+    let create_token = await token.add(user_verification.response.id);
 
     if (create_token.status === 200) {
       const json_response = {
@@ -44,10 +43,6 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(user_verification.status).json(user_verification.response);
   }
-
-  // console.log(user_verification);
-
-  // res.status(user_verification.status).json(user_verification);
 });
 
 // Start the server

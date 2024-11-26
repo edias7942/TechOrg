@@ -14,7 +14,7 @@ import db from "./db.js";
    status: 200
 }
  */
-const verifyUser = async (email, password) => {
+const verify = async (email, password) => {
   const user_query = "SELECT * FROM USERS WHERE email = ?";
   let user_response = await db.runQuery(user_query, [email]);
 
@@ -30,5 +30,5 @@ const verifyUser = async (email, password) => {
 };
 
 export default {
-  verifyUser,
+  verify,
 };

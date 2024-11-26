@@ -6,7 +6,7 @@ import db from "./db.js";
  * @param {string} token Token de 32 caracteres hexadecimais ( 0-9 | a-f )
  * @returns {Promise<object>} object { id, user_id, status, token, created_time }
  */
-const verifyToken = async (token) => {
+const verify = async (token) => {
     const token_query = "SELECT * FROM TOKENS WHERE token = ?";
     let token_response = await db.runQuery(token_query, [token]);
 
@@ -18,11 +18,11 @@ const verifyToken = async (token) => {
 };
 
 /**
- * Função para criar novo token
+ * Função para gerar novo token
  * @param {number} userId ID do usuário para ser criado o Token
  * @returns {Promise<object>} object { status: ( 200 | 500 ), response: { id, user_id, status, token, created_time }
  */
-const createToken = async (userId) => {
+const add = async (userId) => {
     const token = crypto.randomBytes(16).toString("hex"); // Gera um token único
 
     await db.runQuery(
@@ -30,7 +30,7 @@ const createToken = async (userId) => {
         [userId, "active", token]
     );
 
-    let token_response = await verifyToken(token);
+    let token_response = await verify(token);
     console.log(token_response)
 
     if (!token_response) {
@@ -44,7 +44,7 @@ const createToken = async (userId) => {
  * @param {string} token Token a ser modificado
  * @returns {Promise<object>} object { status: (200 | 404 | 500), response: string }
  */
-const updateToken = async (token, newStatus) => {
+const update = async (token, newStatus) => {
     try {
         // Verifica se o token existe
         const tokenExists = await db.runQuery(
@@ -76,7 +76,7 @@ const updateToken = async (token, newStatus) => {
  * @param {string} token Token a ser deletado
  * @returns {Promise<object>} object { status: (200 | 404 | 500), response: string }
  */
-const deleteToken = async (token) => {
+const remove = async (token) => {
     try {
         // Verifica se o token existe
         const tokenExists = await db.runQuery(
@@ -98,8 +98,8 @@ const deleteToken = async (token) => {
 };
 
 export default {
-    verifyToken,
-    createToken,
-    updateToken,
-    deleteToken,
+    verify,
+    add,
+    update,
+    remove
 };
