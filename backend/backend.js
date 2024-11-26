@@ -8,7 +8,7 @@ import cors from "cors";
 import user from "./database/user.js";
 
 const app = express();
-const PORT = 3002;
+const PORT = 3001;
 
 // Middleware
 app.use(cors());

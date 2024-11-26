@@ -3,8 +3,9 @@ function Home() {
         <div>
             <div>Você está em uma área pública.</div>
             <div class="bg-blue-500 text-white text-center p-4">
-                <h1 class="text-4xl">Olá, Tailwind com CDN!</h1>
-                <p class="text-lg">Rápido e fácil de usar.</p>
+                <a href="/login">Login</a>
+                <a href="/protected">Protected</a>
+                <a href="/logout">Logout</a>
             </div>
         </div>
     );
