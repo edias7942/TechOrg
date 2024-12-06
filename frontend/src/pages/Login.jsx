@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function Login({ teste }) {
+function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,19 +24,19 @@ function Login({ teste }) {
                 return err;
             });
 
-        if(response.status === 200) {
-          console.log(response)
+        if (response.status === 200) {
+            let generated_token = response.data.token.token;
+            localStorage.setItem("user_token", generated_token);
         }
-            
+
         if (response.status === 404) {
-            window.MessageEvent('olá')
+            window.MessageEvent("olá");
         }
 
         // Senha Incorreta
         if (response.status === 401) {
-          console.log("Senha Incorreta")
+            console.log("Senha Incorreta");
         }
-        
     }
 
     return (
