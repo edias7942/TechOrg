@@ -26,7 +26,7 @@ function Login() {
 
         if (response.status === 200) {
             let generated_token = response.data.token.token;
-            localStorage.setItem("user_token", generated_token);
+            localStorage.setItem("authorization", generated_token);
             window.location.href = "/protected"; // Redireciona para a página de login
         }
 

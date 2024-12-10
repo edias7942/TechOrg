@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
-import Protected from "./pages/Protected";
+import TestePrivate from "./pages/itemCategories/TestePrivate";
+import ItemCategories from "./pages/itemCategories/ItemCategories";
 
 function App() {
   return (
@@ -14,9 +15,11 @@ function App() {
         {/* Rotas e componentes correspondentes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/protected" element={<Protected />} />
+        <Route path="/item_categories" element={<ItemCategories />} />
         {/* Rota para páginas não encontradas */}
         <Route path="/logout" element={<Logout />} />
+        <Route path="/teste" element={<TestePrivate />} />
+
       </Routes>
     </Router>
   );

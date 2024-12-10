@@ -3,8 +3,8 @@ import axios from "axios";
 
 const verifyToken = async (setIsValidUser) => {
     try {
-        const userToken = localStorage.getItem("user_token");
-        if (!userToken) {
+        const authorization = localStorage.getItem("authorization");
+        if (!authorization) {
             setIsValidUser(false);
             return;
         }
@@ -12,12 +12,11 @@ const verifyToken = async (setIsValidUser) => {
         const response = await axios.post(
             "http://localhost:3001/verifyToken",
             {},
-            { headers: { user_token: userToken } }
+            { headers: { authorization: authorization } }
         );
 
-        console.log(response);
-
         // Verifica a resposta
+        console.log(response);
         if (response.data.status === "active") {
             setIsValidUser(true);
         } else {
@@ -29,7 +28,7 @@ const verifyToken = async (setIsValidUser) => {
     }
 };
 
-function Protected() {
+function ItemCategories() {
     const [isValidUser, setIsValidUser] = useState(null); // null para indicar carregamento
     const [isUserChecked, setIsUserChecked] = useState(false);
 
@@ -49,13 +48,19 @@ function Protected() {
         window.location.href = "/login"; // Redireciona para a página de login
     }
 
-    return (
-        <div>
-            <h1>Categorias</h1>
-            <p><a href="/roteadores">Roteadores</a></p>
-            <p><a href="/suporte">Suporte</a></p>
-        </div>
-    );
+    if (isValidUser) {
+        return (
+            <div>
+                <h1>Categorias</h1>
+                <p>
+                    <a href="/roteadores">Roteadores</a>
+                </p>
+                <p>
+                    <a href="/suporte">Suporte</a>
+                </p>
+            </div>
+        );
+    }
 }
 
-export default Protected;
+export default ItemCategories;
