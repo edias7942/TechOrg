@@ -1,7 +1,7 @@
-import PrivateRoute from "../../routes/PrivateRoute";
+// import PrivateRoute from "./../../routes/PrivateRoute";
 
 const TestePrivate = () => {
-    return <PrivateRoute><div>Teste Funcionando!</div>;</PrivateRoute>
+    return <div>Teste Funcionando!</div>;
 };
 
 export default TestePrivate;

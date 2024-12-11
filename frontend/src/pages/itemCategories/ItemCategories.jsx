@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import config from "./../../config/config.js";
 import axios from "axios";
 
 const verifyToken = async (setIsValidUser) => {
@@ -10,7 +11,7 @@ const verifyToken = async (setIsValidUser) => {
         }
 
         const response = await axios.post(
-            "http://localhost:3001/verifyToken",
+            `${config.backendUrl}/verifyToken`,
             {},
             { headers: { authorization: authorization } }
         );
@@ -53,10 +54,10 @@ function ItemCategories() {
             <div>
                 <h1>Categorias</h1>
                 <p>
-                    <a href="/roteadores">Roteadores</a>
+                    <a href="/categories/roteadores">Roteadores</a>
                 </p>
                 <p>
-                    <a href="/suporte">Suporte</a>
+                    <a href="/categories/suporte">Suporte</a>
                 </p>
             </div>
         );

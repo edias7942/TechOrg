@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import config from "./../config/config.js";
 import axios from "axios";
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
     async function handleLogin(e) {
         e.preventDefault();
         const response = await axios
-            .post("http://localhost:3001/login", {
+            .post(`${config.backendUrl}/login`, {
                 email: email,
                 password: password,
             })
@@ -27,7 +28,7 @@ function Login() {
         if (response.status === 200) {
             let generated_token = response.data.token.token;
             localStorage.setItem("authorization", generated_token);
-            window.location.href = "/protected"; // Redireciona para a página de login
+            window.location.href = "/item_categories"; // Redireciona para a página de login
         }
 
         if (response.status === 404) {

@@ -9,20 +9,19 @@ import TestePrivate from "./pages/itemCategories/TestePrivate";
 import ItemCategories from "./pages/itemCategories/ItemCategories";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Rotas e componentes correspondentes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/item_categories" element={<ItemCategories />} />
-        {/* Rota para páginas não encontradas */}
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/teste" element={<TestePrivate />} />
-
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                {/* Rotas e componentes correspondentes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/item_categories" element={<ItemCategories />} />
+                {/* Rota para páginas não encontradas */}
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/teste" element={<TestePrivate />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
